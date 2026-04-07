@@ -145,7 +145,7 @@ Included dashboards:
 Pull requests are welcome. For major changes, please open an issue first.
 
 ## License
-MIT License
+NO License
 
 ## Support
 For issues and questions, please open a GitHub issue.
