@@ -135,14 +135,14 @@ Included dashboards:
 - Technical Analysis Charts
 - Fundamental Comparison
 
-## Data Update Schedule
+## Data Update Schedule per
 - Intraday: Every 15 minutes (market hours)
 - EOD: 6:00 PM IST
 - Weekly: Sunday 8:00 PM IST
 - Monthly: First day of month
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first.
+Pull requests are always welcome because I am huge and lovely Idiot that need help. For major changes, please open an issue first.
 
 ## License
 NO License
