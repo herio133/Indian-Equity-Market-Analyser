@@ -86,60 +86,6 @@ cp config/credentials.example.json config/credentials.json
 python -c "from database.db_manager import DatabaseManager; DatabaseManager.init_db()"
 ```
 
-## Usage
-
-### Collect Data
-```python
-from data_collection.nse_scraper import NSEScraper
-scraper = NSEScraper()
-scraper.fetch_daily_data(['RELIANCE', 'TCS', 'INFY'])
-```
-
-### Perform Analysis
-```python
-from analysis.technical_indicators import TechnicalAnalysis
-from database.db_manager import DatabaseManager
-
-db = DatabaseManager()
-analysis = TechnicalAnalysis(db)
-signals = analysis.calculate_sma('RELIANCE', period=20)
-```
-
-### Export to Power BI
-```bash
-python powerbi/data_export.py --output powerbi_data.csv
-```
-
-## Database Schema
-
-Key tables:
-- `stocks`: Stock master data (symbol, name, sector, etc.)
-- `price_history`: Daily OHLCV data
-- `fundamentals`: Quarterly financial metrics
-- `technical_indicators`: Calculated indicators
-- `portfolio`: Portfolio holdings and performance
-
-## API Sources
-- NSE (National Stock Exchange)
-- BSE (Bombay Stock Exchange)
-- yfinance for supplementary data
-- Economic calendars
-
-## Power BI Dashboards
-
-Included dashboards:
-- Market Overview
-- Stock Performance Tracker
-- Portfolio Analysis
-- Risk Assessment
-- Technical Analysis Charts
-- Fundamental Comparison
-
-## Data Update Schedule per
-- Intraday: Every 15 minutes (market hours)
-- EOD: 6:00 PM IST
-- Weekly: Sunday 8:00 PM IST
-- Monthly: First day of month
 
 ## Contributing
 Pull requests are always welcome because I am huge and lovely Idiot that need help. For major changes, please open an issue first.
