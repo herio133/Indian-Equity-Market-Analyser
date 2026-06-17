@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS stocks (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_symbol (symbol),
     INDEX idx_sector (sector)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Price History Table
 CREATE TABLE IF NOT EXISTS price_history (
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS price_history (
     UNIQUE KEY unique_stock_date (stock_id, price_date),
     INDEX idx_date (price_date),
     INDEX idx_stock_date (stock_id, price_date)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Intraday Data Table
 CREATE TABLE IF NOT EXISTS intraday_data (
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS intraday_data (
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE CASCADE,
     INDEX idx_stock_timestamp (stock_id, timestamp),
     INDEX idx_timestamp (timestamp)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Technical Indicators Table
 CREATE TABLE IF NOT EXISTS technical_indicators (
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS technical_indicators (
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE CASCADE,
     UNIQUE KEY unique_stock_date (stock_id, price_date),
     INDEX idx_stock_date (stock_id, price_date)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Fundamental Analysis Table
 CREATE TABLE IF NOT EXISTS fundamentals (
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS fundamentals (
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE CASCADE,
     UNIQUE KEY unique_stock_quarter (stock_id, fiscal_quarter, fiscal_year),
     INDEX idx_stock_year (stock_id, fiscal_year)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Portfolio Table
 CREATE TABLE IF NOT EXISTS portfolio (
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS portfolio (
     total_value DECIMAL(15, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Portfolio Holdings Table
 CREATE TABLE IF NOT EXISTS portfolio_holdings (
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS portfolio_holdings (
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE CASCADE,
     INDEX idx_portfolio (portfolio_id),
     INDEX idx_stock (stock_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Trading Signals Table
 CREATE TABLE IF NOT EXISTS trading_signals (
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS trading_signals (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE CASCADE,
     INDEX idx_stock_date (stock_id, signal_date)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Price Alerts Table
 CREATE TABLE IF NOT EXISTS price_alerts (
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS price_alerts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE CASCADE,
     INDEX idx_stock_triggered (stock_id, is_triggered)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Data Update Log
 CREATE TABLE IF NOT EXISTS update_logs (
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS update_logs (
     FOREIGN KEY (stock_id) REFERENCES stocks(stock_id) ON DELETE SET NULL,
     INDEX idx_status (status),
     INDEX idx_completed_at (completed_at)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Create indexes for better performance
 CREATE INDEX idx_price_close ON price_history(close_price);
